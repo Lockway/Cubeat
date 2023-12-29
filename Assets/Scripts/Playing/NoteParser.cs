@@ -16,9 +16,9 @@ public class NoteParser : MonoBehaviour
     {
         songTitle = GameSettings.songTitles[GameSettings.currentSong];
         filepath = Path.Combine(Application.dataPath, "Rhythm/Songs", songTitle, songTitle + ".txt");
-
+        
         List<string> lines = ReadFileAsList(filepath);
-        GameSettings.noteScore = new List<List<int>>();
+        GameSettings.noteScore = noteReader(lines);
     }
     // Finding path of score
 
@@ -77,7 +77,7 @@ public class NoteParser : MonoBehaviour
     }
     // Note class
 
-    public int color_calc(int x)
+    public static int color_calc(int x)
     {
         if (x < 10) return 0;
         else if (x < 100)
@@ -95,7 +95,7 @@ public class NoteParser : MonoBehaviour
     }
     // Return color number
 
-    public int lane_calc(int x)
+    public static int lane_calc(int x)
     {
         int res;
 
