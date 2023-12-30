@@ -18,7 +18,7 @@ public class SongManager : MonoBehaviour
 
     public void PlaySong()
     {
-        int i = GameSettings.currentSong;
+        int i = GameSettings.CurrentSong;
         player.clip = songs[i];
         player.time = GameSettings.songPreview[i];
         player.Play();
@@ -28,7 +28,7 @@ public class SongManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameSettings.currentSong = 0;
+        GameSettings.CurrentSong = 0;
         n = songs.Length;
 
         player = GetComponent<AudioSource>();
@@ -43,8 +43,8 @@ public class SongManager : MonoBehaviour
         {
             player.Stop();
 
-            GameSettings.currentSong++;
-            GameSettings.currentSong %= n;
+            GameSettings.CurrentSong++;
+            GameSettings.CurrentSong %= n;
 
             PlaySong();
         }
@@ -53,8 +53,8 @@ public class SongManager : MonoBehaviour
         {
             player.Stop();
 
-            GameSettings.currentSong += (n - 1);
-            GameSettings.currentSong %= n;
+            GameSettings.CurrentSong += (n - 1);
+            GameSettings.CurrentSong %= n;
 
             PlaySong();
         }
@@ -62,7 +62,7 @@ public class SongManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Keypad5))
         {
             player.Stop();
-            OnSongSelected(songs[GameSettings.currentSong]);
+            OnSongSelected(songs[GameSettings.CurrentSong]);
         }
     }
 }

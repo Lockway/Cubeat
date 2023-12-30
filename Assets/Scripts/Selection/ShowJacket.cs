@@ -19,7 +19,7 @@ public class ShowJacket : MonoBehaviour
     {
         if (imageArray.Length > 0)
         {
-            displayImage.sprite = imageArray[GameSettings.currentSong];
+            displayImage.sprite = imageArray[GameSettings.CurrentSong];
         }
 
         if (Input.GetKeyDown(KeyCode.Keypad5))

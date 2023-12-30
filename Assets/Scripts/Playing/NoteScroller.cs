@@ -12,6 +12,7 @@ public class NoteScroller : MonoBehaviour
     void Start()
     {
         beatTempo /= 60f;
+        beatTempo *= GameSettings.HighSpeed;
     }
 
     // Update is called once per frame

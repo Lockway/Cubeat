@@ -26,12 +26,12 @@ public class ShowTitle : MonoBehaviour
     void Start()
     {
         textComponent = GetComponent<TextMeshProUGUI>();
-        ChangeButtonText(GameSettings.currentSong);
+        ChangeButtonText(GameSettings.CurrentSong);
     }
 
     // Update is called once per frame
     void Update()
     {
-        ChangeButtonText(GameSettings.currentSong);
+        ChangeButtonText(GameSettings.CurrentSong);
     }
 }

@@ -14,11 +14,11 @@ public class NoteParser : MonoBehaviour
 
     void Awake()
     {
-        songTitle = GameSettings.songTitles[GameSettings.currentSong];
+        songTitle = GameSettings.songTitles[GameSettings.CurrentSong];
         filepath = Path.Combine(Application.dataPath, "Rhythm/Songs", songTitle, songTitle + ".txt");
         
         List<string> lines = ReadFileAsList(filepath);
-        GameSettings.noteScore = noteReader(lines);
+        GameSettings.NoteScore = noteReader(lines);
     }
     // Finding path of score
 

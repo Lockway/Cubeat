@@ -17,7 +17,7 @@ public class NoteMaker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        noteScore = GameSettings.noteScore;
+        noteScore = GameSettings.NoteScore;
         GameObject[] notePrefab = 
         {
             notePrefabRed, notePrefabGreen, notePrefabBlue, notePrefabYellow, notePrefabCyan, notePrefabMagenta,
@@ -29,11 +29,38 @@ public class NoteMaker : MonoBehaviour
         foreach (var note in noteScore)
         {
             int noteColor = NoteParser.color_calc(note[0]);
+            int color_to_show = noteColor;
             int noteLane = NoteParser.lane_calc(note[0]);
+            bool noteRemain = true;
 
-            GameObject noteObject = Instantiate(notePrefab[noteColor], noteHolder.transform);
-            noteObject.transform.localPosition = new Vector3(lanePosition[noteLane], (float)note[1], -5000);
-            noteObject.SetActive(true);
+            while (noteRemain)
+            {
+                GameObject noteObject = Instantiate(notePrefab[color_to_show], noteHolder.transform);
+                noteObject.transform.localPosition = new Vector3(lanePosition[noteLane], (float)note[1], -5000);
+                noteObject.SetActive(true);
+
+                CircleCollider2D hitWindow = noteObject.AddComponent<CircleCollider2D>();
+                hitWindow.radius = 1;
+
+                NoteObject noteScript = noteObject.AddComponent<NoteObject>();
+                if (noteColor < 3)
+                {
+                    noteRemain = false;
+                    noteScript.keyToPress = KeyCode.Keypad7 - 3 * noteColor + noteLane;
+                }
+                else if(noteColor < 6)
+                {
+                    noteScript.keyToPress = KeyCode.Keypad7 - 3 * (noteColor - 3) + noteLane;
+                    noteColor = (noteColor + 1) % 3;
+                    // 3=0+1, 4=1+2, 5=2+0
+                }
+                else
+                {
+                    noteScript.keyToPress = KeyCode.Keypad1 + noteLane;
+                    noteColor = 3;
+                    // White = Blue + Yellow
+                }
+            }
         }
         
         // GameObject testNote1 = Instantiate(notePrefabA, noteHolder.transform);
