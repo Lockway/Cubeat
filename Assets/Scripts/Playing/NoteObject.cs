@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class NoteObject : MonoBehaviour
 {
+    public bool hit;
     public bool canBePressed;
     public KeyCode keyToPress;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        hit = false;
     }
 
     // Update is called once per frame
@@ -20,7 +21,24 @@ public class NoteObject : MonoBehaviour
         {
             if (canBePressed)
             {
+                hit = true;
                 gameObject.SetActive(false);
+
+                if (transform.position.y > -3.5)
+                {
+                    Debug.Log("Early");
+                    GameManager.instance.judgeLevel = 1;
+                }
+                else if (transform.position.y < -4.5)
+                {
+                    Debug.Log("Late");
+                    GameManager.instance.judgeLevel = 1;
+                }
+                else
+                {
+                    Debug.Log("Perfect!");
+                    GameManager.instance.judgeLevel = 2;
+                }
                 GameManager.instance.NoteHit();
             }
         }
@@ -39,6 +57,11 @@ public class NoteObject : MonoBehaviour
         if (other.tag == "Activator")
         {
             canBePressed = false;
+            if (!hit)
+            {
+                GameManager.instance.NoteMiss();
+            }
+            
         }
     }
 }

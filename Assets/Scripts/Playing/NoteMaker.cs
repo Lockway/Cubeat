@@ -7,6 +7,8 @@ public class NoteMaker : MonoBehaviour
 {
     public GameObject notePrefabRed, notePrefabGreen, notePrefabBlue, notePrefabYellow, notePrefabCyan, notePrefabMagenta, notePrefabWhite;
     public GameObject noteHolder;
+    public int noteAmount;
+
     private List<List<int>> noteScore;
     
     private void Awake()
@@ -17,6 +19,7 @@ public class NoteMaker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        noteAmount = 0;
         noteScore = GameSettings.NoteScore;
         GameObject[] notePrefab = 
         {
@@ -35,7 +38,9 @@ public class NoteMaker : MonoBehaviour
 
             while (noteRemain)
             {
+                noteAmount++;
                 GameObject noteObject = Instantiate(notePrefab[color_to_show], noteHolder.transform);
+
                 noteObject.transform.localPosition = new Vector3(lanePosition[noteLane], (float)note[1], -5000);
                 noteObject.SetActive(true);
 
@@ -62,7 +67,8 @@ public class NoteMaker : MonoBehaviour
                 }
             }
         }
-        
+
+        GameManager.instance.maxCombo = noteAmount;
         // GameObject testNote1 = Instantiate(notePrefabA, noteHolder.transform);
         // testNote1.transform.localPosition = new Vector3(-140, 50, -5000);
         // testNote1.SetActive(true);

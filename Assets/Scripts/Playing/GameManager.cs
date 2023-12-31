@@ -7,15 +7,21 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public AudioSource theMusic;
+
+    public int currentScore;
+    public int currentCombo;
+    public int maxCombo;
+    public int judgeLevel;
+    // Perfect=2, Great=1, Miss=0
+
     public bool startPlaying;
     public bool startSong;
     public float delayTime;
 
-    public int hitTimes; // Only for test!!
-
     void Awake()
     {
-        hitTimes = 0;
+        currentScore = 0;
+        currentCombo = 0;
 
         instance = this;
 
@@ -26,9 +32,10 @@ public class GameManager : MonoBehaviour
         delayTime = 0;
 
         // ------------------------------------
+        judgeLevel = 2;
         GameSettings.HighSpeed = 8.7f;
         GameSettings.SongOffset = 0.5f;
-        // Need revision after making 'option'
+        // Only for test, need revision later
 
         if (GameSettings.SongOffset < 0.0f)
         {
@@ -70,12 +77,16 @@ public class GameManager : MonoBehaviour
 
     public void NoteHit()
     {
-        hitTimes++;
-        Debug.Log("Note hit #" + hitTimes);
+        if (currentScore == 0) currentScore += 1000000 % (maxCombo * 2);
+
+        int OneNoteScore = 1000000 / (maxCombo * 2);
+        currentScore += OneNoteScore * judgeLevel;
+
+        GameManager.instance.currentCombo++;
     }
 
     public void NoteMiss()
     {
-
+        GameManager.instance.currentCombo = 0;
     }
 }
