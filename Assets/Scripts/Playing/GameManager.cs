@@ -14,14 +14,17 @@ public class GameManager : MonoBehaviour
     public int judgeLevel;
     // Perfect=2, Great=1, Miss=0
 
+    public List<int> judges;
+
     public bool startPlaying;
     public bool startSong;
+    public bool playingEnd;
     public float delayTime;
 
     void Awake()
     {
-        currentScore = 0;
-        currentCombo = 0;
+        currentScore = 0; currentCombo = 0;
+        judges = new List<int> { 0, 0, 0, 0 };
 
         instance = this;
 
@@ -32,7 +35,6 @@ public class GameManager : MonoBehaviour
         delayTime = 0;
 
         // ------------------------------------
-        judgeLevel = 2;
         GameSettings.HighSpeed = 8.7f;
         GameSettings.SongOffset = 0.5f;
         // Only for test, need revision later
@@ -72,6 +74,10 @@ public class GameManager : MonoBehaviour
         {
             theMusic.Play();
             startSong = true;
+        }
+        else if (!theMusic.isPlaying)
+        {
+            playingEnd = true;
         }
     }
 

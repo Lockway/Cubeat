@@ -28,16 +28,19 @@ public class NoteObject : MonoBehaviour
                 {
                     Debug.Log("Early");
                     GameManager.instance.judgeLevel = 1;
+                    GameManager.instance.judges[1]++;
                 }
                 else if (transform.position.y < -4.5)
                 {
                     Debug.Log("Late");
                     GameManager.instance.judgeLevel = 1;
+                    GameManager.instance.judges[2]++;
                 }
                 else
                 {
                     Debug.Log("Perfect!");
                     GameManager.instance.judgeLevel = 2;
+                    GameManager.instance.judges[0]++;
                 }
                 GameManager.instance.NoteHit();
             }
@@ -60,6 +63,7 @@ public class NoteObject : MonoBehaviour
             if (!hit)
             {
                 GameManager.instance.NoteMiss();
+                GameManager.instance.judges[3]++;
             }
             
         }

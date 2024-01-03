@@ -7,6 +7,11 @@ public class NewBehaviourScript : MonoBehaviour
 {
     public string sceneNameToLoad;
 
+    void Start()
+    {
+        GameSettings.CurrentSong = 0;
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Keypad1) ||

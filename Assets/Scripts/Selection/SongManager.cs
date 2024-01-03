@@ -28,7 +28,6 @@ public class SongManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameSettings.CurrentSong = 0;
         n = songs.Length;
 
         player = GetComponent<AudioSource>();
