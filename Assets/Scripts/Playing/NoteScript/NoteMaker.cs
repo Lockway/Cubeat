@@ -41,13 +41,15 @@ public class NoteMaker : MonoBehaviour
                 noteAmount++;
                 GameObject noteObject = Instantiate(notePrefab[color_to_show], noteHolder.transform);
 
-                noteObject.transform.localPosition = new Vector3(lanePosition[noteLane], (float)note[1], -5000);
+                noteObject.transform.localPosition = new Vector3(lanePosition[noteLane], (float)note[1] * GameSettings.HighSpeed / 10, -5000);
                 noteObject.SetActive(true);
 
                 CircleCollider2D hitWindow = noteObject.AddComponent<CircleCollider2D>();
                 hitWindow.radius = 1;
 
                 NoteObject noteScript = noteObject.AddComponent<NoteObject>();
+                noteScript.noteTime = note[1];
+                
                 if (noteColor < 3)
                 {
                     noteRemain = false;

@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
 
         // ------------------------------------
         GameSettings.HighSpeed = 8.7f;
-        GameSettings.SongOffset = 0.5f;
+        GameSettings.SongOffset = 0f;
         // Only for test, need revision later
 
         if (GameSettings.SongOffset < 0.0f)

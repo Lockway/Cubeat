@@ -7,6 +7,7 @@ public class NoteObject : MonoBehaviour
     public bool hit;
     public bool canBePressed;
     public KeyCode keyToPress;
+    public int noteTime;
 
     // Start is called before the first frame update
     void Start()
@@ -24,13 +25,15 @@ public class NoteObject : MonoBehaviour
                 hit = true;
                 gameObject.SetActive(false);
 
-                if (transform.position.y > -3.5)
+                var musicTime = Mathf.RoundToInt(GameManager.instance.theMusic.time * 1000f);
+
+                if (noteTime - 82 <= musicTime && musicTime <= noteTime - 41)
                 {
                     Debug.Log("Early");
                     GameManager.instance.judgeLevel = 1;
                     GameManager.instance.judges[1]++;
                 }
-                else if (transform.position.y < -4.5)
+                else if (noteTime + 41 <= musicTime && musicTime <= noteTime + 82)
                 {
                     Debug.Log("Late");
                     GameManager.instance.judgeLevel = 1;
