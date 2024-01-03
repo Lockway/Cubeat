@@ -18,6 +18,28 @@ public class NoteObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        var musicTime = Mathf.RoundToInt(GameManager.instance.theMusic.time * 1000f);
+
+        if (!canBePressed)
+        {
+            if (noteTime - GameSettings.JudgeTiming.Good <= musicTime && musicTime <= noteTime + GameSettings.JudgeTiming.Good)
+            {
+                canBePressed = true;
+            }
+        }
+        else
+        {
+            if (noteTime + GameSettings.JudgeTiming.Good < musicTime)
+            {
+                canBePressed = false;
+                if (!hit)
+                {
+                    GameManager.instance.NoteMiss();
+                    GameManager.instance.judges[3]++;
+                }
+            }
+        }
+        
         if (Input.GetKeyDown(keyToPress))
         {
             if (canBePressed)
@@ -25,15 +47,13 @@ public class NoteObject : MonoBehaviour
                 hit = true;
                 gameObject.SetActive(false);
 
-                var musicTime = Mathf.RoundToInt(GameManager.instance.theMusic.time * 1000f);
-
-                if (noteTime - 82 <= musicTime && musicTime <= noteTime - 41)
+                if (noteTime - GameSettings.JudgeTiming.Good <= musicTime && musicTime <= noteTime - GameSettings.JudgeTiming.Perfect)
                 {
                     Debug.Log("Early");
                     GameManager.instance.judgeLevel = 1;
                     GameManager.instance.judges[1]++;
                 }
-                else if (noteTime + 41 <= musicTime && musicTime <= noteTime + 82)
+                else if (noteTime + GameSettings.JudgeTiming.Perfect <= musicTime && musicTime <= noteTime + GameSettings.JudgeTiming.Good)
                 {
                     Debug.Log("Late");
                     GameManager.instance.judgeLevel = 1;
@@ -50,25 +70,25 @@ public class NoteObject : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.tag == "Activator")
-        {
-            canBePressed = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.tag == "Activator")
-        {
-            canBePressed = false;
-            if (!hit)
-            {
-                GameManager.instance.NoteMiss();
-                GameManager.instance.judges[3]++;
-            }
-            
-        }
-    }
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if (other.tag == "Activator")
+    //     {
+    //         canBePressed = true;
+    //     }
+    // }
+    //
+    // private void OnTriggerExit2D(Collider2D other)
+    // {
+    //     if (other.tag == "Activator")
+    //     {
+    //         canBePressed = false;
+    //         if (!hit)
+    //         {
+    //             GameManager.instance.NoteMiss();
+    //             GameManager.instance.judges[3]++;
+    //         }
+    //         
+    //     }
+    // }
 }
