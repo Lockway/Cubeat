@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class NoteScroller : MonoBehaviour
 {
-    public float beatTempo;
     public bool hasStarted;
     
 
     // Start is called before the first frame update
     void Start()
     {
-        beatTempo /= 60f;
-        beatTempo *= GameSettings.HighSpeed;
+
     }
 
     // Update is called once per frame
@@ -27,8 +25,7 @@ public class NoteScroller : MonoBehaviour
         }
         else
         {
-            //transform.position -= new Vector3(0f, beatTempo * Time.deltaTime, 0f);
-            transform.localPosition -= new Vector3(0f, GameSettings.HighSpeed * Time.deltaTime * 100, 0f);
+            transform.localPosition -= new Vector3(0f, GameSettings.HighSpeed * Time.deltaTime * 100.0f, 0f);
         }
     }
 }

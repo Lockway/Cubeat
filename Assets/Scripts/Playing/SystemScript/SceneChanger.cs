@@ -18,7 +18,7 @@ public class SceneChanger : MonoBehaviour
     {
         if (GameManager.instance.playingEnd)
         {
-            if (Input.GetKeyDown(KeyCode.Keypad5))
+            if (Input.GetKeyDown(KeyCode.Keypad5) || Input.GetKeyDown(KeyCode.Return))
             {
                 keyPressed++;
             }

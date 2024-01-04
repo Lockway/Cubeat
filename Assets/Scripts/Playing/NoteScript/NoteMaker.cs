@@ -26,30 +26,31 @@ public class NoteMaker : MonoBehaviour
             notePrefabRed, notePrefabGreen, notePrefabBlue, notePrefabYellow, notePrefabCyan, notePrefabMagenta,
             notePrefabWhite
         };
-        int[] lanePosition = { -140, 0, 140 };
         
+        int[] lanePosition = { -140, 0, 140 };
+        // Init
 
         foreach (var note in noteScore)
         {
             int noteColor = NoteParser.color_calc(note[0]);
-            int color_to_show = noteColor;
             int noteLane = NoteParser.lane_calc(note[0]);
+
             bool noteRemain = true;
+            int color_to_show = noteColor;
+            // Init
 
             while (noteRemain)
             {
-                noteAmount++;
                 GameObject noteObject = Instantiate(notePrefab[color_to_show], noteHolder.transform);
-
                 noteObject.transform.localPosition = new Vector3(lanePosition[noteLane], (float)note[1] * GameSettings.HighSpeed / 10, -5000);
                 noteObject.SetActive(true);
-
-                CircleCollider2D hitWindow = noteObject.AddComponent<CircleCollider2D>();
-                hitWindow.radius = 1;
+                noteAmount++;
+                // Making a note
 
                 NoteObject noteScript = noteObject.AddComponent<NoteObject>();
                 noteScript.noteTime = note[1];
-                
+                // Set variables in note
+
                 if (noteColor < 3)
                 {
                     noteRemain = false;
@@ -67,13 +68,13 @@ public class NoteMaker : MonoBehaviour
                     noteColor = 3;
                     // White = Blue + Yellow
                 }
+
+                int keynum = noteScript.keyToPress - KeyCode.Keypad1;
+                GameManager.instance.notesInLane[keynum].Enqueue(noteObject);
+                // Queueing
             }
         }
-
         GameManager.instance.maxCombo = noteAmount;
-        // GameObject testNote1 = Instantiate(notePrefabA, noteHolder.transform);
-        // testNote1.transform.localPosition = new Vector3(-140, 50, -5000);
-        // testNote1.SetActive(true);
     }
 
     // Update is called once per frame

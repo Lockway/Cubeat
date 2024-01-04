@@ -38,7 +38,7 @@ public class SongManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad2))
+        if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             player.Stop();
 
@@ -48,7 +48,7 @@ public class SongManager : MonoBehaviour
             PlaySong();
         }
 
-        if (Input.GetKeyDown(KeyCode.Keypad8))
+        if (Input.GetKeyDown(KeyCode.Keypad8) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             player.Stop();
 
@@ -58,7 +58,7 @@ public class SongManager : MonoBehaviour
             PlaySong();
         }
 
-        if (Input.GetKeyDown(KeyCode.Keypad5))
+        if (Input.GetKeyDown(KeyCode.Keypad5) || Input.GetKeyDown(KeyCode.Return))
         {
             player.Stop();
             OnSongSelected(songs[GameSettings.CurrentSong]);
