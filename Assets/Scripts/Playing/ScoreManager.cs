@@ -40,15 +40,14 @@ public class ScoreManager : MonoBehaviour
                     noteScript.canBePressed = false;
                     if (!noteScript.hit)
                     {
-                        GameManager.instance.NoteMiss(i);
                         GameManager.instance.judges[3]++;
+                        GameManager.instance.NoteMiss(i);
+                        Destroy(currentNote);
                     }
                 }
             }
             // Transition of canBePressed
 
-
-            // if (Input.GetKeyDown(noteScript.keyToPress))
 
             if (Input.GetKeyDown(KeyCode.Keypad1 + i) || Input.GetKeyDown(KeyCode.A + subkeys[i]))
             {

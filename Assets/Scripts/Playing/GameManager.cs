@@ -102,5 +102,6 @@ public class GameManager : MonoBehaviour
     public void NoteMiss(int k)
     {
         currentCombo = 0;
+        notesInLane[k].Dequeue();
     }
 }
