@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
     public bool startPlaying;
     public bool startSong;
     public bool playingEnd;
-    public float delayTime;
 
     void Awake()
     {
@@ -37,23 +36,7 @@ public class GameManager : MonoBehaviour
 
         theMusic = GetComponent<AudioSource>();
         theMusic.clip = GameSettings.SelectedSong;
-
         theMusic.time = 0;
-        delayTime = 0.0f;
-
-        // ------------------------------------
-        GameSettings.HighSpeed = 8.0f;
-        GameSettings.SongOffset = 0f;
-        // Only for test, need revision later
-
-        if (GameSettings.SongOffset < 0.0f)
-        {
-            theMusic.time = -GameSettings.SongOffset;
-        }
-        else
-        {
-            delayTime = GameSettings.SongOffset;
-        }
     }
 
 
@@ -73,10 +56,6 @@ public class GameManager : MonoBehaviour
                 startPlaying = true;
             }
         } // Song Start
-        else if (delayTime > 0.0f)
-        {
-            delayTime -= Time.deltaTime;
-        } // Song offset
         else if(!startSong)
         {
             theMusic.Play();

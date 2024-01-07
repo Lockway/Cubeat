@@ -47,6 +47,7 @@ public class SongManager : MonoBehaviour
 
             PlaySong();
         }
+        // Down
 
         if (Input.GetKeyDown(KeyCode.Keypad8) || Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -57,11 +58,27 @@ public class SongManager : MonoBehaviour
 
             PlaySong();
         }
+        // Up
 
         if (Input.GetKeyDown(KeyCode.Keypad5) || Input.GetKeyDown(KeyCode.Return))
         {
             player.Stop();
             OnSongSelected(songs[GameSettings.CurrentSong]);
         }
+        // Select
+
+        if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.X))
+        {
+            player.Stop();
+            SceneManager.LoadScene("Option");
+        }
+        // Select
+
+        if (Input.GetKeyDown(KeyCode.Keypad7) || Input.GetKeyDown(KeyCode.Escape))
+        {
+            player.Stop();
+            SceneManager.LoadScene("Title");
+        }
+        // Select
     }
 }

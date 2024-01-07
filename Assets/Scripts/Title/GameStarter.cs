@@ -10,6 +10,7 @@ public class NewBehaviourScript : MonoBehaviour
     void Start()
     {
         GameSettings.CurrentSong = 0;
+        if (GameSettings.HighSpeed < 1.0f) GameSettings.HighSpeed = 5.0f;
     }
 
     void Update()

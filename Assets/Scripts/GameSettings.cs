@@ -8,7 +8,7 @@ public static class GameSettings
     public static AudioClip SelectedSong { get; set; }
     public static int CurrentSong { get; set; }
     public static float HighSpeed { get; set; }
-    public static float SongOffset { get; set; }
+    public static int GameMode { get; set; }
 
     public static class JudgeTiming
     {
