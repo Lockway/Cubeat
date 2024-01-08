@@ -1517,7 +1517,6 @@ MonoBehaviour:
   notePrefabMagenta: {fileID: 7250245909784736140, guid: a071bd3f426044641a7451c81426be8f, type: 3}
   notePrefabWhite: {fileID: 2044116192941432873, guid: 7490385e17415ce4fbdab25d51904b02, type: 3}
   noteHolder: {fileID: 902335644}
-  noteAmount: 0
 --- !u!1 &902335644
 GameObject:
   m_ObjectHideFlags: 0
@@ -1581,6 +1580,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subkeys: 170000000200000015000000120000000300000005000000160000000400000011000000
+  PrefabColorful: {fileID: 2600618362102840245, guid: 814f46fc0420cbb48af8dca07b12c851, type: 3}
+  PrefabFast: {fileID: 332531716886848988, guid: e8b7c25520f20544d9720f2d3e549416, type: 3}
+  PrefabSlow: {fileID: 7142266354491834593, guid: 4956bd60971803b4592e76dcdbef6285, type: 3}
+  PrefabMiss: {fileID: 5733120157182636217, guid: b21a18b7614a8464c898beab56b0d184, type: 3}
+  NoteButton: {fileID: 1359605543}
 --- !u!1 &1013715343
 GameObject:
   m_ObjectHideFlags: 0
@@ -2077,7 +2081,7 @@ GameObject:
   - component: {fileID: 1265724392}
   - component: {fileID: 1265724391}
   m_Layer: 0
-  m_Name: AudioSource
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2104,7 +2108,6 @@ MonoBehaviour:
   startPlaying: 0
   startSong: 0
   playingEnd: 0
-  delayTime: 0
 --- !u!82 &1265724392
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2210,7 +2213,7 @@ Transform:
   m_GameObject: {fileID: 1265724390}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.37506697, y: -0.6001213, z: 851.5648}
+  m_LocalPosition: {x: 0, y: 0, z: 851.5648}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -13,7 +13,8 @@ public static class GameSettings
     public static class JudgeTiming
     {
         public static int Perfect = 50;
-        public static int Good = 150;
+        public static int Good = 120;
+        public static int Miss = 200;
     }
     public static Sprite SelectedJacket { get; set; }
     public static List<List<int>> NoteScore { get; set; }

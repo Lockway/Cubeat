@@ -62,7 +62,6 @@ public class NoteMaker : MonoBehaviour
             {
                 GameObject noteObject = Instantiate(notePrefab[color_to_show], noteHolder.transform);
                 
-
                 noteObject.transform.localPosition = new Vector3(lanePosition[noteLane], (float)note[1] * GameSettings.HighSpeed / 10, -5000);
                 noteObject.SetActive(true);
                 noteAmount++;
