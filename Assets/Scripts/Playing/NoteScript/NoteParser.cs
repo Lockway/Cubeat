@@ -11,11 +11,12 @@ public class NoteParser : MonoBehaviour
 {
     private string songTitle;
     private string filepath;
+    private string[] levels = { "Easy", "Normal", "Hard" };
 
     void Awake()
     {
         songTitle = GameSettings.songTitles[GameSettings.CurrentSong];
-        filepath = Path.Combine(Application.dataPath, "Rhythm/Songs", songTitle, songTitle + ".txt");
+        filepath = Path.Combine(Application.dataPath, "Rhythm/Songs", songTitle, levels[GameSettings.Difficulty] + ".txt");
         
         List<string> lines = ReadFileAsList(filepath);
         GameSettings.NoteScore = noteReader(lines);
