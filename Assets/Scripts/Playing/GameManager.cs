@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     public int currentScore;
     public int currentCombo;
     public int maxCombo;
-    public int judgeLevel;
     // Perfect=2, Great=1, Miss=0
 
     public List<int> judges;
@@ -20,6 +19,8 @@ public class GameManager : MonoBehaviour
     public bool startPlaying;
     public bool startSong;
     public bool playingEnd;
+    
+    public int[] subkeys = { 23, 2, 21, 18, 3, 5, 22, 4, 17 };
 
     void Awake()
     {
@@ -67,7 +68,7 @@ public class GameManager : MonoBehaviour
         } // Song End
     }
 
-    public void NoteHit(int k)
+    public void NoteHit(int k, int judgeLevel)
     {
         if (currentScore == 0) currentScore += 1000000 % (maxCombo * 2);
 
@@ -75,12 +76,23 @@ public class GameManager : MonoBehaviour
         currentScore += OneNoteScore * judgeLevel;
 
         currentCombo++;
-        notesInLane[k].Dequeue();
+        if (k != -1)
+        {
+            notesInLane[k].Dequeue();
+        }
     }
 
     public void NoteMiss(int k)
     {
         currentCombo = 0;
-        notesInLane[k].Dequeue();
+        if (k != -1)
+        {
+            notesInLane[k].Dequeue();
+        }
+    }
+
+    public KeyCode mainToSubKey(int keyNum)
+    {
+        return KeyCode.A + subkeys[keyNum];
     }
 }

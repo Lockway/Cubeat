@@ -38,6 +38,8 @@ public class NoteMaker : MonoBehaviour
         {
             int noteColor = NoteParser.color_calc(note[0]);
             int noteLane = NoteParser.lane_calc(note[0]);
+            int isLongNt = note[2];
+            int longNtEndTime = note[3];
             // Init
             
 
@@ -61,36 +63,60 @@ public class NoteMaker : MonoBehaviour
             while (noteRemain)
             {
                 GameObject noteObject = Instantiate(notePrefab[color_to_show], noteHolder.transform);
+
+                if (isLongNt == 0)
+                {
+                    noteObject.transform.localPosition = new Vector3(lanePosition[noteLane],
+                        (float)note[1] * GameSettings.HighSpeed / 10, -5000);
+                }
+                else
+                {
+                    var midY = (float)(note[3] + note[1]) / 2;
+                    noteObject.transform.localPosition = new Vector3(lanePosition[noteLane],
+                        midY * GameSettings.HighSpeed / 10, -5000);
+
+                    var noteScale = noteObject.transform.localScale;
+                    var val = (note[3] - note[1] + 40.6) * noteScale.y / 40.6;
+                    noteObject.transform.localScale = new Vector3(noteScale.x, (float)val, noteScale.z);
+                }
                 
-                noteObject.transform.localPosition = new Vector3(lanePosition[noteLane], (float)note[1] * GameSettings.HighSpeed / 10, -5000);
+                
                 noteObject.SetActive(true);
                 noteAmount++;
                 // Making a note
 
                 NoteObject noteScript = noteObject.AddComponent<NoteObject>();
                 noteScript.noteTime = note[1];
+                if (isLongNt == 1)
+                {
+                    noteScript.isLongNt = true;
+                    noteScript.longNtEndTime = longNtEndTime;
+                    noteAmount++;
+                }
                 // Set variables in note
+                KeyCode keyToPress;
 
                 if (noteColor < 3)
                 {
                     noteRemain = false;
-                    noteScript.keyToPress = KeyCode.Keypad7 - 3 * noteColor + noteLane;
+                    keyToPress = KeyCode.Keypad7 - 3 * noteColor + noteLane;
                 }
                 else if(noteColor < 6)
                 {
-                    noteScript.keyToPress = KeyCode.Keypad7 - 3 * (noteColor - 3) + noteLane;
+                    keyToPress = KeyCode.Keypad7 - 3 * (noteColor - 3) + noteLane;
                     noteColor = (noteColor + 1) % 3;
                     // 3=0+1, 4=1+2, 5=2+0
                 }
                 else
                 {
-                    noteScript.keyToPress = KeyCode.Keypad1 + noteLane;
+                    keyToPress = KeyCode.Keypad1 + noteLane;
                     noteColor = 3;
                     // White = Blue + Yellow
                 }
 
-                int keynum = noteScript.keyToPress - KeyCode.Keypad1;
-                GameManager.instance.notesInLane[keynum].Enqueue(noteObject);
+                int keyNum = keyToPress - KeyCode.Keypad1;
+                noteScript.keyNum = keyNum;
+                GameManager.instance.notesInLane[keyNum].Enqueue(noteObject);
                 // Queueing
             }
         }

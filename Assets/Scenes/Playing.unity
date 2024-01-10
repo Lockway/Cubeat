@@ -2103,7 +2103,6 @@ MonoBehaviour:
   currentScore: 0
   currentCombo: 0
   maxCombo: 0
-  judgeLevel: 0
   judges: 
   startPlaying: 0
   startSong: 0
