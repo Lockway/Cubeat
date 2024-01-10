@@ -1,8 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using System;
 using System.IO;
 using System.Text;
+using System.Collections;
+using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +17,7 @@ public class NoteParser : MonoBehaviour
     void Awake()
     {
         songTitle = GameSettings.songTitles[GameSettings.CurrentSong];
-        filepath = Path.Combine(Application.dataPath, "Rhythm/Songs", songTitle, levels[GameSettings.Difficulty] + ".txt");
+        filepath = Path.Combine(Application.dataPath, "Resources/Songs", songTitle, levels[GameSettings.Difficulty] + ".txt");
         
         List<string> lines = ReadFileAsList(filepath);
         GameSettings.NoteScore = noteReader(lines);

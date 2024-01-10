@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public static class GameSettings
 {
-    public static AudioClip SelectedSong { get; set; }
+    public static bool Init { get; set; }
     public static int CurrentSong { get; set; }
     public static float HighSpeed { get; set; }
     public static int GameMode { get; set; }
     public static int Difficulty { get; set; }
+    // Numbers
 
     public static class JudgeTiming
     {
@@ -17,9 +18,18 @@ public static class GameSettings
         public static int Good = 120;
         public static int Miss = 200;
     }
+    // Judge Setting
+
+    public static AudioClip SelectedSong { get; set; }
     public static Sprite SelectedJacket { get; set; }
     public static List<List<int>> NoteScore { get; set; }
+    // Game Playing
 
-    public static string[] songTitles = { "666", "Arghena", "Chronomia", "Kart Rider", "XENOViA" };
-    public static float[] songPreview = { 12.3f, 110.5f, 69.8f, 1.5f, 70.5f };
+
+    public static List<string> songTitles { get; set; }
+    public static List<string> songLevels { get; set; }
+    public static List<float> songPreview { get; set; }
+    public static List<Sprite> imageArray { get; set; }
+    public static List<AudioClip> songClips { get; set; }
+    // Song Database
 }

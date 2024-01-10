@@ -15,8 +15,8 @@ public class ShowTitle : MonoBehaviour
     public void ChangeButtonText(int pos)
     {
         id = pos + delta;
-        id += (GameSettings.songTitles).Length;
-        id %= (GameSettings.songTitles).Length;
+        id += GameSettings.songTitles.Count;
+        id %= GameSettings.songTitles.Count;
 
         textComponent.text = GameSettings.songTitles[id];
     }

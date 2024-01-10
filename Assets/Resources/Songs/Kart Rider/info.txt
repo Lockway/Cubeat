@@ -1,0 +1,3 @@
+Title:Kart Rider
+Level:1:4:7
+Preview:1.5

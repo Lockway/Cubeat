@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class SongManager : MonoBehaviour
 {
-    public AudioClip[] songs;
     public AudioSource player;
     int n;
 
@@ -19,16 +18,15 @@ public class SongManager : MonoBehaviour
     public void PlaySong()
     {
         int i = GameSettings.CurrentSong;
-        player.clip = songs[i];
+        player.clip = GameSettings.songClips[i];
         player.time = GameSettings.songPreview[i];
         player.Play();
     }
 
-
     // Start is called before the first frame update
     void Start()
     {
-        n = songs.Length;
+        n = GameSettings.songClips.Count;
 
         player = GetComponent<AudioSource>();
         player.playOnAwake = false;
@@ -63,7 +61,7 @@ public class SongManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Keypad5) || Input.GetKeyDown(KeyCode.Return))
         {
             player.Stop();
-            OnSongSelected(songs[GameSettings.CurrentSong]);
+            OnSongSelected(GameSettings.songClips[GameSettings.CurrentSong]);
         }
         // Select
 
