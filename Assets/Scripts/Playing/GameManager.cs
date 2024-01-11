@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
         currentScore += OneNoteScore * judgeLevel;
 
         currentCombo++;
-        if (k != -1)
+        if (k >= 0)
         {
             notesInLane[k].Dequeue();
         }
@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
     public void NoteMiss(int k)
     {
         currentCombo = 0;
-        if (k != -1)
+        if (k >= 0)
         {
             notesInLane[k].Dequeue();
         }

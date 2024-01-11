@@ -73,17 +73,19 @@ public class NoteMaker : MonoBehaviour
                 {
                     var midY = (float)(note[3] + note[1]) / 2;
                     noteObject.transform.localPosition = new Vector3(lanePosition[noteLane],
-                        midY * GameSettings.HighSpeed / 10, -5000);
+                        midY * GameSettings.HighSpeed / 10, -4000);
 
                     var noteScale = noteObject.transform.localScale;
                     var val = (note[3] - note[1] + 40.6) * noteScale.y / 40.6;
                     noteObject.transform.localScale = new Vector3(noteScale.x, (float)val, noteScale.z);
                 }
+                // Locating note
                 
                 
                 noteObject.SetActive(true);
                 noteAmount++;
                 // Making a note
+
 
                 NoteObject noteScript = noteObject.AddComponent<NoteObject>();
                 noteScript.noteTime = note[1];
@@ -94,8 +96,8 @@ public class NoteMaker : MonoBehaviour
                     noteAmount++;
                 }
                 // Set variables in note
+                
                 KeyCode keyToPress;
-
                 if (noteColor < 3)
                 {
                     noteRemain = false;

@@ -23,6 +23,7 @@ def group_num(x):
 
 def cubeat_sorting(li):
     return li[1]+group_num(li[0])
+# Time -> Lane Sorting
 
 
 def same_column(a, b):
@@ -43,8 +44,7 @@ def combine_note(notes):
             val[0] += notes[0][0]
             notes.pop(0)
 
-    notes = val
-    return notes
+    return val
 # Combining same column notes
 
 
@@ -85,16 +85,25 @@ if __name__ == '__main__':
     # Changing to INT
 
     new_list = []
+    # Result List
+
     while len(r) > 0:
         temp = [r.pop(0)]
         while len(r) > 0 and same_column(temp[0], r[0]):
             temp.append(r.pop(0))
+        # temp = Same Lane Notes
 
         i = len(temp)-1
+        longNts = []
         while i >= 0:
             if temp[i][2] == 1:
-                new_list.append(temp.pop(i))
+                longNts.append(temp.pop(i))
             i -= 1
+
+        if len(longNts) > 0:
+            longNts = combine_note(longNts)
+            new_list.append(longNts)
+        # Combine LongNotes first
 
         if len(temp) > 0:
             temp = combine_note(temp)

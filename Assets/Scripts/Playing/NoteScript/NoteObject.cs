@@ -8,51 +8,41 @@ public class NoteObject : MonoBehaviour
     public int keyNum;
     private KeyCode keyToPressMain, keyToPressSub;
     public int noteTime;
+    // Common
     
     public bool isLongNt;
-    public int longNtEndTime;
     public bool isLongNtClicked;
-    public int longNtTime;
-    private int timeKeyDowned;
-    private bool isKeyDowned;
+    public int longNtEndTime;
+    // LongNote
 
 
     // Start is called before the first frame update
     void Start()
     {
-        longNtTime = longNtEndTime - noteTime;
         keyToPressMain = KeyCode.Keypad1 + keyNum;
         keyToPressSub = GameManager.instance.mainToSubKey(keyNum);
     }
 
-    // Update is called once per frame
+    // Update is called once per frame (Only for longNote)
     void Update()
     {
         if (isLongNtClicked)
         {
+            var musicTime = Mathf.RoundToInt(GameManager.instance.theMusic.time * 1000f);
+
             if (Input.GetKey(keyToPressMain) || Input.GetKey(keyToPressSub))
             {
-                if (!isKeyDowned)
+                if (musicTime >= longNtEndTime)
                 {
-                    isKeyDowned = true;
-                    timeKeyDowned = Mathf.RoundToInt(Time.time * 1000f);
-                }
-                else
-                {
-                    int elapsedTime = Mathf.RoundToInt(Time.time * 1000f) - timeKeyDowned;
+                    Debug.Log("Hit!");
+                    int judgeLevel = 2;
+                    GameManager.instance.judges[0]++;
+                    ScoreManager.instance.judgeEffect(0);
+                    GameManager.instance.NoteHit(-1, judgeLevel);
 
-                    if (elapsedTime >= longNtTime)
-                    {
-                        Debug.Log("Hit!");
-                        int judgeLevel = 2;
-                        GameManager.instance.judges[0]++;
-                        ScoreManager.instance.judgeEffect(0);
-                        GameManager.instance.NoteHit(-1, judgeLevel);
+                    isLongNtClicked = false;
 
-                        isLongNtClicked = false;
-                        
-                        Destroy(gameObject);
-                    }
+                    Destroy(gameObject);
                 }
             }
             else

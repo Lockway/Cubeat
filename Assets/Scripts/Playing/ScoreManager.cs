@@ -108,9 +108,7 @@ public class ScoreManager : MonoBehaviour
                         if (noteScript.isLongNt)
                         {
                             GameManager.instance.judges[3]++;
-                            judgeEffect(3);
-                            GameManager.instance.NoteMiss(-1);
-                            
+                            judgeEffect(3); 
                             Destroy(currentNote);
                         }
                     }
