@@ -78,6 +78,3 @@ crashlytics-build.properties
 
 # IDEA cache file
 /.idea/
-
-# osuTOcubeat
-osuTOcubeat/*.txt
