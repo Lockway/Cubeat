@@ -76,7 +76,7 @@ public class NoteMaker : MonoBehaviour
                         midY * GameSettings.HighSpeed / 10, -4000);
 
                     var noteScale = noteObject.transform.localScale;
-                    var val = (note[3] - note[1] + 40.6) * noteScale.y / 40.6;
+                    var val = ((note[3] - note[1]) * GameSettings.HighSpeed / 10 + 40.6) * noteScale.y / 40.6;
                     noteObject.transform.localScale = new Vector3(noteScale.x, (float)val, noteScale.z);
                 }
                 // Locating note
