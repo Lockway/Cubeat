@@ -7,6 +7,7 @@ using TMPro;
 public class ShowScore : MonoBehaviour
 {
     int currentScore;
+    bool bounce;
     public int option;
     private TextMeshProUGUI currentText;
 
@@ -27,8 +28,20 @@ public class ShowScore : MonoBehaviour
         }
         else
         {
-            currentScore = GameManager.instance.currentCombo;
-            currentText.text = currentScore.ToString();
+            if (currentScore != GameManager.instance.currentCombo)
+            {
+                currentScore = GameManager.instance.currentCombo;
+                currentText.text = currentScore.ToString();
+
+                gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                bounce = true;
+            }
+
+            if (bounce)
+            {
+                gameObject.transform.localScale += new Vector3(Time.deltaTime * 10f, Time.deltaTime * 10f, Time.deltaTime * 10f);
+                if (gameObject.transform.localScale.x >= 1.0f) bounce = false;
+            }
         }
     }
 }

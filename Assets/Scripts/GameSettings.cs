@@ -8,6 +8,7 @@ public static class GameSettings
     public static bool Init { get; set; }
     public static int CurrentSong { get; set; }
     public static float HighSpeed { get; set; }
+    public static int NoteOffset { get; set; }
     public static int GameMode { get; set; }
     public static int Difficulty { get; set; }
     // Numbers

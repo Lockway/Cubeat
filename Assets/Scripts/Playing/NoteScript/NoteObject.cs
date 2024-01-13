@@ -41,6 +41,7 @@ public class NoteObject : MonoBehaviour
                     GameManager.instance.NoteHit(-1, judgeLevel);
 
                     isLongNtClicked = false;
+                    GameManager.instance.HitEffect(keyNum % 3);
 
                     Destroy(gameObject);
                 }

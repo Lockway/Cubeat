@@ -23,16 +23,16 @@ public class OptionManager : MonoBehaviour
             if (option > 0)
             {
                 option--;
-                transform.localPosition += new Vector3(0, 200, 0);
+                transform.localPosition += new Vector3(0, 150, 0);
             }
         }
         // Up
         if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if (option < 2)
+            if (option < 3)
             {
                 option++;
-                transform.localPosition -= new Vector3(0, 200, 0);
+                transform.localPosition -= new Vector3(0, 150, 0);
             }
         }
         // Down
@@ -49,7 +49,11 @@ public class OptionManager : MonoBehaviour
             {
                 GameSettings.HighSpeed += 0.1f;
             }
-            else if (option == 1)
+            else if (option == 1 && GameSettings.NoteOffset < 1000)
+            {
+                GameSettings.NoteOffset += 10;
+            }
+            else if (option == 2)
             {
                 GameSettings.GameMode = (GameSettings.GameMode + 1) % 5;
             }
@@ -62,7 +66,11 @@ public class OptionManager : MonoBehaviour
             {
                 GameSettings.HighSpeed -= 0.1f;
             }
-            else if (option == 1)
+            else if (option == 1 && GameSettings.NoteOffset > -1000)
+            {
+                GameSettings.NoteOffset -= 10;
+            }
+            else if (option == 2)
             {
                 GameSettings.GameMode = (GameSettings.GameMode + 4) % 5;
             }
@@ -71,9 +79,10 @@ public class OptionManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Keypad5) || Input.GetKeyDown(KeyCode.Return))
         {
-            if (option == 2)
+            if (option == 3)
             {
                 GameSettings.HighSpeed = 5.0f;
+                GameSettings.NoteOffset = 0;
                 GameSettings.GameMode = 0;
             }
         }

@@ -8,6 +8,11 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public AudioSource theMusic;
     public Queue<GameObject>[] notesInLane;
+    // Essential
+
+    public GameObject NoteButton;
+    public GameObject HitPrefab;
+    // Hit effect
 
     public int currentScore;
     public int currentCombo;
@@ -79,6 +84,7 @@ public class GameManager : MonoBehaviour
         if (k >= 0)
         {
             notesInLane[k].Dequeue();
+            HitEffect(k % 3);
         }
     }
 
@@ -94,5 +100,12 @@ public class GameManager : MonoBehaviour
     public KeyCode mainToSubKey(int keyNum)
     {
         return KeyCode.A + subkeys[keyNum];
+    }
+
+    public void HitEffect(int lane)
+    {
+        GameObject HitEffect = Instantiate(HitPrefab, NoteButton.transform);
+        HitEffect.transform.localPosition = new Vector3(140 * (lane - 1), 0, -8000);
+        NoteEffect HitScript = HitEffect.AddComponent<NoteEffect>();
     }
 }

@@ -25,6 +25,12 @@ public class ShowOption : MonoBehaviour
         }
         else if (option == 1)
         {
+            if (GameSettings.NoteOffset >= 0) textComponent.text = "Note Offset\t+" + GameSettings.NoteOffset.ToString() + "ms";
+            else textComponent.text = "Note Offset\t" + GameSettings.NoteOffset.ToString() + "ms";
+
+        }
+        else if (option == 2)
+        {
             textComponent.text = gameModes[GameSettings.GameMode];
         }
     }

@@ -41,7 +41,11 @@ public class NoteMaker : MonoBehaviour
             int isLongNt = note[2];
             int longNtEndTime = note[3];
             // Init
-            
+
+            note[1] += GameSettings.NoteOffset;
+            note[3] += GameSettings.NoteOffset;
+            // Note Offset
+
 
             if (GameSettings.GameMode == 1) noteLane = 2 - noteLane;
             // Mirror
