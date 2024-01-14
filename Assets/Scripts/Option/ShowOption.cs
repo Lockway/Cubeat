@@ -21,12 +21,12 @@ public class ShowOption : MonoBehaviour
     {
         if (option == 0)
         {
-            textComponent.text = "High Speed\t" + GameSettings.HighSpeed.ToString("F1");
+            textComponent.text = "High Speed  " + GameSettings.HighSpeed.ToString("F1");
         }
         else if (option == 1)
         {
-            if (GameSettings.NoteOffset >= 0) textComponent.text = "Note Offset\t+" + GameSettings.NoteOffset.ToString() + "ms";
-            else textComponent.text = "Note Offset\t" + GameSettings.NoteOffset.ToString() + "ms";
+            if (GameSettings.NoteOffset >= 0) textComponent.text = "Note Offset +" + GameSettings.NoteOffset.ToString() + "ms";
+            else textComponent.text = "Note Offset " + GameSettings.NoteOffset.ToString() + "ms";
 
         }
         else if (option == 2)

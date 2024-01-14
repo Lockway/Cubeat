@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NoteMaker : MonoBehaviour
 {
-    public GameObject notePrefabRed, notePrefabGreen, notePrefabBlue;
-    public GameObject notePrefabYellow, notePrefabCyan, notePrefabMagenta, notePrefabWhite;
+    public Sprite noteRed, noteGreen, noteBlue;
+    public Sprite noteYellow, noteCyan, noteMagenta, noteWhite;
     public GameObject noteHolder;
+    public float noteHeight;
 
     System.Random random = new System.Random();
 
@@ -23,10 +25,10 @@ public class NoteMaker : MonoBehaviour
     void Start()
     {
         noteScore = GameSettings.NoteScore;
-        GameObject[] notePrefab = 
+        Sprite[] notePrefab = 
         {
-            notePrefabRed, notePrefabGreen, notePrefabBlue,
-            notePrefabYellow, notePrefabCyan, notePrefabMagenta, notePrefabWhite
+            noteRed, noteGreen, noteBlue,
+            noteYellow, noteCyan, noteMagenta, noteWhite
         };
 
         int noteAmount = 0;
@@ -36,15 +38,15 @@ public class NoteMaker : MonoBehaviour
 
         foreach (var note in noteScore)
         {
+            note[1] += GameSettings.NoteOffset;
+            note[3] += GameSettings.NoteOffset;
+            // Note Offset
+
             int noteColor = NoteParser.color_calc(note[0]);
             int noteLane = NoteParser.lane_calc(note[0]);
             int isLongNt = note[2];
             int longNtEndTime = note[3];
             // Init
-
-            note[1] += GameSettings.NoteOffset;
-            note[3] += GameSettings.NoteOffset;
-            // Note Offset
 
 
             if (GameSettings.GameMode == 1) noteLane = 2 - noteLane;
@@ -66,7 +68,15 @@ public class NoteMaker : MonoBehaviour
 
             while (noteRemain)
             {
-                GameObject noteObject = Instantiate(notePrefab[color_to_show], noteHolder.transform);
+                GameObject noteObject = new GameObject("note");
+                noteObject.transform.SetParent(noteHolder.transform, false);
+
+                Image img = noteObject.AddComponent<Image>();
+                img.sprite = notePrefab[color_to_show];
+
+                RectTransform rect = img.GetComponent<RectTransform>();
+                rect.sizeDelta = new Vector2(118f, noteHeight);
+                // Test
 
                 if (isLongNt == 0)
                 {
@@ -80,7 +90,7 @@ public class NoteMaker : MonoBehaviour
                         midY * GameSettings.HighSpeed / 10, -4000);
 
                     var noteScale = noteObject.transform.localScale;
-                    var val = ((note[3] - note[1]) * GameSettings.HighSpeed / 10 + 40.6) * noteScale.y / 40.6;
+                    var val = ((note[3] - note[1]) * GameSettings.HighSpeed / 10 + noteHeight) * noteScale.y / noteHeight;
                     noteObject.transform.localScale = new Vector3(noteScale.x, (float)val, noteScale.z);
                 }
                 // Locating note
