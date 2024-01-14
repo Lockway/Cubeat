@@ -1078,6 +1078,7 @@ GameObject:
   - component: {fileID: 494982946}
   - component: {fileID: 494982948}
   - component: {fileID: 494982947}
+  - component: {fileID: 494982949}
   m_Layer: 0
   m_Name: bt_input_r
   m_TagString: Activator
@@ -1142,6 +1143,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 494982945}
   m_CullTransparentMesh: 1
+--- !u!114 &494982949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494982945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b11dc26fd8a14f25b9a5117f0115bffb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: 2
+  defaultButton: {fileID: 21300000, guid: d9d7c7f8e7f851f45861a31a56800315, type: 3}
+  pushedButton: {fileID: 21300000, guid: e9a576b6d0f6ba547a12efb653bc0735, type: 3}
 --- !u!1 &517058331
 GameObject:
   m_ObjectHideFlags: 0
@@ -1379,6 +1395,7 @@ GameObject:
   - component: {fileID: 550775758}
   - component: {fileID: 550775760}
   - component: {fileID: 550775759}
+  - component: {fileID: 550775761}
   m_Layer: 0
   m_Name: bt_input_l
   m_TagString: Activator
@@ -1443,6 +1460,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 550775757}
   m_CullTransparentMesh: 1
+--- !u!114 &550775761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550775757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b11dc26fd8a14f25b9a5117f0115bffb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: 0
+  defaultButton: {fileID: 21300000, guid: d9d7c7f8e7f851f45861a31a56800315, type: 3}
+  pushedButton: {fileID: 21300000, guid: e9a576b6d0f6ba547a12efb653bc0735, type: 3}
 --- !u!1 &668007808
 GameObject:
   m_ObjectHideFlags: 0
@@ -1588,6 +1620,7 @@ GameObject:
   - component: {fileID: 733958126}
   - component: {fileID: 733958128}
   - component: {fileID: 733958127}
+  - component: {fileID: 733958129}
   m_Layer: 0
   m_Name: bt_input_c
   m_TagString: Activator
@@ -1652,6 +1685,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 733958125}
   m_CullTransparentMesh: 1
+--- !u!114 &733958129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733958125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b11dc26fd8a14f25b9a5117f0115bffb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: 1
+  defaultButton: {fileID: 21300000, guid: d9d7c7f8e7f851f45861a31a56800315, type: 3}
+  pushedButton: {fileID: 21300000, guid: e9a576b6d0f6ba547a12efb653bc0735, type: 3}
 --- !u!1 &860340759
 GameObject:
   m_ObjectHideFlags: 0
