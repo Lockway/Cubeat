@@ -38,6 +38,8 @@ public class OptionManager : MonoBehaviour
         // Down
         if (Input.GetKeyDown(KeyCode.Keypad7) || Input.GetKeyDown(KeyCode.Escape))
         {
+            PlayerPrefsManager.SaveSettings("highSpeed", GameSettings.HighSpeed.ToString());
+            PlayerPrefsManager.SaveSettings("noteOffset", GameSettings.NoteOffset.ToString());
             SceneManager.LoadScene("Selection");
         }
         // ESC

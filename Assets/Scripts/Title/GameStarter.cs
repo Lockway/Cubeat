@@ -15,7 +15,8 @@ public class NewBehaviourScript : MonoBehaviour
     void Start()
     {
         GameSettings.CurrentSong = 0;
-        if (GameSettings.HighSpeed < 1.0f) GameSettings.HighSpeed = 7.0f;
+        GameSettings.NoteOffset = int.Parse(PlayerPrefsManager.LoadSettings("noteOffset") != "" ? PlayerPrefsManager.LoadSettings("noteOffset") : "0");
+        GameSettings.HighSpeed = float.Parse(PlayerPrefsManager.LoadSettings("highSpeed") != "" ? PlayerPrefsManager.LoadSettings("highSpeed") : "5.0");
 
         if (!GameSettings.Init)
         {
