@@ -13,6 +13,7 @@ public class NoteObject : MonoBehaviour
     public bool isLongNt;
     public bool isLongNtClicked;
     public int longNtEndTime;
+    private bool isLongNtPassed;
     // LongNote
 
 
@@ -32,13 +33,16 @@ public class NoteObject : MonoBehaviour
 
             if (Input.GetKey(keyToPressMain) || Input.GetKey(keyToPressSub))
             {
-                if (musicTime >= longNtEndTime)
+                //if (musicTime >= longNtEndTime)
+                if (!isLongNtPassed && longNtEndTime - GameSettings.JudgeTiming.Good <= musicTime && musicTime < longNtEndTime)
                 {
-                    Debug.Log("Hit!");
-                    int judgeLevel = 2;
+                    isLongNtPassed = true;
+                }
+                else if (longNtEndTime <= musicTime)
+                {
                     GameManager.instance.judges[0]++;
                     ScoreManager.instance.judgeEffect(0);
-                    GameManager.instance.NoteHit(-1, judgeLevel);
+                    GameManager.instance.NoteHit(-1, 2);
 
                     isLongNtClicked = false;
                     GameManager.instance.HitEffect(keyNum % 3);
@@ -48,14 +52,28 @@ public class NoteObject : MonoBehaviour
             }
             else
             {
-                Debug.Log("Missed!");
-                GameManager.instance.judges[3]++;
-                ScoreManager.instance.judgeEffect(3);
-                GameManager.instance.NoteMiss(-1);
+                if (isLongNtPassed)
+                {
+                    GameManager.instance.judges[0]++;
+                    ScoreManager.instance.judgeEffect(0);
+                    GameManager.instance.NoteHit(-1, 2);
+                    
+                    isLongNtClicked = false;
+                    GameManager.instance.HitEffect(keyNum % 3);
 
-                isLongNtClicked = false;
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    Debug.Log("Missed!");
+                    GameManager.instance.judges[3]++;
+                    ScoreManager.instance.judgeEffect(3);
+                    GameManager.instance.NoteMiss(-1);
+
+                    isLongNtClicked = false;
                 
-                Destroy(gameObject);
+                    Destroy(gameObject);
+                }
             }
         }
     }
