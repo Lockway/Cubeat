@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     public bool startPlaying;
     public bool startSong;
+    public bool songEnd;
     public bool playingEnd;
     
     public int[] subkeys = { 23, 2, 21, 18, 3, 5, 22, 4, 17 };
@@ -69,7 +70,7 @@ public class GameManager : MonoBehaviour
         } // Song Play
         else if (!theMusic.isPlaying)
         {
-            playingEnd = true;
+            songEnd = true;
         } // Song End
     }
 

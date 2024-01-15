@@ -37,7 +37,7 @@ public class ResultInfo : MonoBehaviour
         else if (option == 4)
         {
             textComponent = GetComponent<TextMeshProUGUI>();
-            List<string> ranks = new List<string> { "EXC", "SSS", "SS", "S", "A", "B", "C", "D", "E", "F" };
+            List<string> ranks = new List<string> { "COLOR", "SSS", "SS", "S", "A", "B", "C", "D", "E", "F" };
             List<int> values = new List<int> { 0, 20000, 50000, 100000, 150000, 200000, 300000, 400000, 500000, 1000000 };
 
             for (int i = 0; i < 10; i++)
