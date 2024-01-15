@@ -5,9 +5,12 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
+    AudioSource selectAudio;
+
     // Start is called before the first frame update
     void Start()
     {
+        selectAudio = gameObject.GetComponent<AudioSource>();
         gameObject.transform.localPosition = new Vector3(180 * (GameSettings.Difficulty - 1), -23, -5000);
     }
 
@@ -18,6 +21,7 @@ public class LevelManager : MonoBehaviour
         {
             if (GameSettings.Difficulty > 0)
             {
+                selectAudio.Play();
                 GameSettings.Difficulty--;
                 gameObject.transform.localPosition -= new Vector3(180, 0, 0);
             }
@@ -28,11 +32,11 @@ public class LevelManager : MonoBehaviour
         {
             if (GameSettings.Difficulty < 2)
             {
+                selectAudio.Play();
                 GameSettings.Difficulty++;
                 gameObject.transform.localPosition += new Vector3(180, 0, 0);
             }
         }
         // Right
-
     }
 }
