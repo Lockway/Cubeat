@@ -11,6 +11,8 @@ using System.Collections.Generic;
 public class NewBehaviourScript : MonoBehaviour
 {
     public string sceneNameToLoad;
+    private int[] tenPow = { 1, 10, 100 };
+    private string[] levelName = { "Easy.txt", "Normal.txt", "Hard.txt" };
 
     void Start()
     {
@@ -21,7 +23,7 @@ public class NewBehaviourScript : MonoBehaviour
         if (!GameSettings.Init)
         {
             GameSettings.songTitles = new List<string>();
-            GameSettings.songLevels = new List<string>();
+            GameSettings.songLevels = new List<int>();
             GameSettings.songPreview = new List<float>();
             GameSettings.imageArray = new List<Sprite>();
             GameSettings.songClips = new List<AudioClip>();
@@ -33,8 +35,20 @@ public class NewBehaviourScript : MonoBehaviour
                 string filepath = Path.Combine(Application.dataPath, "Resources/Songs", title, "info.txt");
                 List<string> lines = new List<string>();
                 lines.AddRange(File.ReadAllLines(filepath));
+                // Reading Info.txt
 
-                GameSettings.songLevels.Add(lines[1]);
+                int levelVal = 0;
+                string[] levelInfo = lines[1].Split(new char[] { ':' });
+
+                for(int i = 0; i < 3; i++)
+                {
+                    filepath = Path.Combine(Application.dataPath, "Resources/Songs", title, levelName[i]);
+                    if (!File.Exists(filepath)) continue;
+
+                    levelVal += int.Parse(levelInfo[i + 1]) * tenPow[i];
+                    // Easy 1 - Normal 10 - Hard 100
+                }
+                GameSettings.songLevels.Add(levelVal);
                 // songLevels
 
                 string[] parts = lines[2].Split(new char[] { ':' });

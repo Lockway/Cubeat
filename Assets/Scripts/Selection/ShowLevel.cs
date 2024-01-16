@@ -6,6 +6,8 @@ using TMPro;
 public class ShowLevel : MonoBehaviour
 {
     public int option;
+    private int[] tenPow = { 1, 10, 100 };
+    private int levels, level;
     private TextMeshProUGUI textComponent;
 
     // Start is called before the first frame update
@@ -17,9 +19,9 @@ public class ShowLevel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        string levels = GameSettings.songLevels[GameSettings.CurrentSong];
-        string[] parts = levels.Split(new char[] { ':' });
+        levels = GameSettings.songLevels[GameSettings.CurrentSong];
+        level = (levels / tenPow[option]) % 10;
 
-        textComponent.text = parts[option + 1];
+        textComponent.text = level != 0 ? level.ToString() : " ";
     }
 }

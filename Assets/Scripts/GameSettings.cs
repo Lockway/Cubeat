@@ -28,7 +28,7 @@ public static class GameSettings
 
 
     public static List<string> songTitles { get; set; }
-    public static List<string> songLevels { get; set; }
+    public static List<int> songLevels { get; set; }
     public static List<float> songPreview { get; set; }
     public static List<Sprite> imageArray { get; set; }
     public static List<AudioClip> songClips { get; set; }

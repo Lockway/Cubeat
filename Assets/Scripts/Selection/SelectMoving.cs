@@ -32,6 +32,7 @@ public class SelectMoving : MonoBehaviour
         
         if (Mathf.Abs(gameObject.transform.localPosition.y) > 0.1f)
         {
+
             float v = gameObject.transform.localPosition.y * 3.0f;
             gameObject.transform.localPosition -= new Vector3(0, v * Time.deltaTime, 0);
         } // Moving
