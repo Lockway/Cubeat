@@ -38,8 +38,8 @@ public class NoteMaker : MonoBehaviour
 
         foreach (var note in noteScore)
         {
-            note[1] += GameSettings.NoteOffset;
-            note[3] += GameSettings.NoteOffset;
+            note[1] += GameSettings.NoteOffset + GameSettings.AudioLatency;
+            note[3] += GameSettings.NoteOffset + GameSettings.AudioLatency;
             // Note Offset
 
             int noteColor = NoteParser.color_calc(note[0]);

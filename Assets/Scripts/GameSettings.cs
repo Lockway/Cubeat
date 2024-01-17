@@ -11,6 +11,7 @@ public static class GameSettings
     public static int NoteOffset { get; set; }
     public static int GameMode { get; set; }
     public static int Difficulty { get; set; }
+    public static int AudioLatency = 100;
     // Numbers
 
     public static class JudgeTiming
