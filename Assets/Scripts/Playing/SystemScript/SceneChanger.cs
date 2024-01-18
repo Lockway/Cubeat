@@ -5,12 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    public int keyPressed;
+    private bool soundPlayed;
+    private int keyPressed;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         keyPressed = 0;
+        audioSource = GetComponent<AudioSource>();
+        transform.localPosition = new Vector3(-2500, 0, -8000f);
     }
 
     // Update is called once per frame
@@ -23,7 +27,18 @@ public class SceneChanger : MonoBehaviour
                 keyPressed++;
             }
 
-            if (keyPressed >= 3)
+            if (keyPressed >= 3 && transform.localPosition.x < 900f)
+            {
+                if (!soundPlayed)
+                {
+                    audioSource.Play();
+                    soundPlayed = true;
+                }
+
+                transform.localPosition += new Vector3(Time.deltaTime * 3000f, 0, 0);
+            }
+
+            if (transform.localPosition.x > 900f)
             {
                 SceneManager.LoadScene("Selection");
             }

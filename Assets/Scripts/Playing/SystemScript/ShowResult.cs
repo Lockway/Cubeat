@@ -19,7 +19,12 @@ public class ResultInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.playingEnd)
+        if (option < 0 && GameManager.instance.songEnd)
+        {
+            gameObject.SetActive(false);
+        }
+
+        if (option >= 0 && GameManager.instance.playingEnd)
         {
             resultShow();
         }
@@ -74,6 +79,6 @@ public class ResultInfo : MonoBehaviour
         else
         {
             gameObject.SetActive(false);
-        }   // Note Buttons
+        }   // Remove
     }
 }

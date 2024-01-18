@@ -12,6 +12,9 @@ using System.Collections.Generic;
 public class NewBehaviourScript : MonoBehaviour
 {
     public string sceneNameToLoad;
+    public AudioSource audioSource;
+
+    private bool pressed;
     private int[] tenPow = { 1, 10, 100 };
     private string[] levelName = { "Easy", "Normal", "Hard" };
 
@@ -66,14 +69,24 @@ public class NewBehaviourScript : MonoBehaviour
 
             GameSettings.Init = true;
         }
+
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
     {
-        if (Input.anyKeyDown)
+        if (Input.anyKeyDown && !pressed)
         {
-            SceneManager.LoadScene(sceneNameToLoad);
+            audioSource.Play();
+            pressed = true;
         }
+
+        if (pressed && transform.localPosition.x < 1100)
+        {
+            transform.localPosition += new Vector3(Time.deltaTime * 4000f, 0, 0);
+        }
+
+        if (transform.localPosition.x > 1000) SceneManager.LoadScene(sceneNameToLoad);
     }
 
     void findSongs()

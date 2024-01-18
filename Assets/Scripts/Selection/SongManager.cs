@@ -29,7 +29,6 @@ public class SongManager : MonoBehaviour
         n = GameSettings.songClips.Count;
 
         player = GetComponent<AudioSource>();
-        player.playOnAwake = false;
         PlaySong();
     }
 
