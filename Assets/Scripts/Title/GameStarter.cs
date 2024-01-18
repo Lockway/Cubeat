@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEditor;
 
+using System;
 using System.IO;
 using System.Linq;
 using System.Collections;
@@ -12,7 +13,7 @@ public class NewBehaviourScript : MonoBehaviour
 {
     public string sceneNameToLoad;
     private int[] tenPow = { 1, 10, 100 };
-    private string[] levelName = { "Easy.txt", "Normal.txt", "Hard.txt" };
+    private string[] levelName = { "Easy", "Normal", "Hard" };
 
     void Start()
     {
@@ -32,9 +33,8 @@ public class NewBehaviourScript : MonoBehaviour
 
             foreach (string title in GameSettings.songTitles)
             {
-                string filepath = Path.Combine(Application.dataPath, "Resources/Songs", title, "info.txt");
-                List<string> lines = new List<string>();
-                lines.AddRange(File.ReadAllLines(filepath));
+                TextAsset textAsset = Resources.Load<TextAsset>("Songs/" + title + "/info");
+                string[] lines = textAsset.text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
                 // Reading Info.txt
 
                 int levelVal = 0;
@@ -42,8 +42,8 @@ public class NewBehaviourScript : MonoBehaviour
 
                 for(int i = 0; i < 3; i++)
                 {
-                    filepath = Path.Combine(Application.dataPath, "Resources/Songs", title, levelName[i]);
-                    if (!File.Exists(filepath)) continue;
+                    textAsset = Resources.Load<TextAsset>("Songs/" + title + "/" + levelName[i]);
+                    if (textAsset == null) continue;
 
                     levelVal += int.Parse(levelInfo[i + 1]) * tenPow[i];
                     // Easy 1 - Normal 10 - Hard 100
@@ -78,13 +78,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     void findSongs()
     {
-        string[] audioGUIDs = AssetDatabase.FindAssets("t:AudioClip", new[] { "Assets/Resources/Songs" });
-
-        foreach (string guid in audioGUIDs)
-        {
-            string assetPath = AssetDatabase.GUIDToAssetPath(guid);
-            string fileName = Path.GetFileNameWithoutExtension(assetPath);
-            GameSettings.songTitles.Add(fileName);
-        }
+        AudioClip[] audioClips = Resources.LoadAll<AudioClip>("Songs");
+        foreach (var clip in audioClips) GameSettings.songTitles.Add(clip.name);
     }
 }

@@ -11,37 +11,21 @@ using UnityEngine.UI;
 public class NoteParser : MonoBehaviour
 {
     private string songTitle;
-    private string filepath;
+    private TextAsset textAsset;
     private string[] levels = { "Easy", "Normal", "Hard" };
 
     void Awake()
     {
         songTitle = GameSettings.songTitles[GameSettings.CurrentSong];
-        filepath = Path.Combine(Application.dataPath, "Resources/Songs", songTitle, levels[GameSettings.Difficulty] + ".txt");
-        
-        List<string> lines = ReadFileAsList(filepath);
+        textAsset = Resources.Load<TextAsset>("Songs/" + songTitle + "/" + levels[GameSettings.Difficulty]);
+
+        string[] lines = textAsset.text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
         GameSettings.NoteScore = noteReader(lines);
     }
     // Finding path of score
 
-    List<string> ReadFileAsList(string filePath)
-    {
-        List<string> lines = new List<string>();
 
-        if (File.Exists(filePath))
-        {
-            lines.AddRange(File.ReadAllLines(filePath));
-        }
-        else
-        {
-            Debug.LogError("File not found: " + filePath);
-        }
-
-        return lines;
-    }
-    // File reading function
-
-    List<List<int>> noteReader(List<string> lines)
+    List<List<int>> noteReader(string[] lines)
     {
         List<List<int>> allNum = new List<List<int>>();
 
