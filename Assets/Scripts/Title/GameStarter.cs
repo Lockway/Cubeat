@@ -75,18 +75,23 @@ public class NewBehaviourScript : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
         if (Input.anyKeyDown && !pressed)
         {
             audioSource.Play();
             pressed = true;
         }
 
-        if (pressed && transform.localPosition.x < 1100)
+        if (pressed && transform.localPosition.x < 500)
         {
-            transform.localPosition += new Vector3(Time.deltaTime * 4000f, 0, 0);
+            transform.localPosition += new Vector3(Time.deltaTime * 2000f, 0, 0);
         }
 
-        if (transform.localPosition.x > 1000) SceneManager.LoadScene(sceneNameToLoad);
+        if (transform.localPosition.x > 500) SceneManager.LoadScene(sceneNameToLoad);
     }
 
     void findSongs()
