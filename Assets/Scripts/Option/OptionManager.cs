@@ -47,7 +47,7 @@ public class OptionManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Keypad6) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if (option == 0 && GameSettings.HighSpeed < 10.0f)
+            if (option == 0 && GameSettings.HighSpeed < 20.0f)
             {
                 GameSettings.HighSpeed += 0.1f;
             }
@@ -83,7 +83,7 @@ public class OptionManager : MonoBehaviour
         {
             if (option == 3)
             {
-                GameSettings.HighSpeed = 5.0f;
+                GameSettings.HighSpeed = 10.0f;
                 GameSettings.NoteOffset = 0;
                 GameSettings.GameMode = 0;
             }
