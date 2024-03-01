@@ -31,6 +31,22 @@ public class NoteObject : MonoBehaviour
         {
             var musicTime = Mathf.RoundToInt(GameManager.instance.theMusic.time * 1000f);
 
+            if (GameSettings.GameMode == 5)
+            {
+                if (longNtEndTime <= musicTime)
+                {
+                    GameManager.instance.judges[0]++;
+                    ScoreManager.instance.judgeEffect(0);
+                    GameManager.instance.NoteHit(-1, 2);
+
+                    isLongNtClicked = false;
+                    GameManager.instance.HitEffect(keyNum % 3);
+
+                    Destroy(gameObject);
+                }
+                return;
+            }   // Auto Play
+
             if (Input.GetKey(keyToPressMain) || Input.GetKey(keyToPressSub))
             {
                 //if (musicTime >= longNtEndTime)
@@ -65,7 +81,6 @@ public class NoteObject : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Missed!");
                     GameManager.instance.judges[3]++;
                     ScoreManager.instance.judgeEffect(3);
                     GameManager.instance.NoteMiss(-1);

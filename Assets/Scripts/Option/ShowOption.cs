@@ -8,7 +8,7 @@ public class ShowOption : MonoBehaviour
 {
     public int option;
     private TextMeshProUGUI textComponent;
-    private string[] gameModes = { "Normal Mode", "Mirror", "Lane Random", "Color Random", "Super Random" };
+    private string[] gameModes = { "Normal Mode", "Mirror", "Lane Random", "Color Random", "Super Random", "Auto Play" };
 
     // Start is called before the first frame update
     void Start()

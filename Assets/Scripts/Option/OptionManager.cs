@@ -57,7 +57,7 @@ public class OptionManager : MonoBehaviour
             }
             else if (option == 2)
             {
-                GameSettings.GameMode = (GameSettings.GameMode + 1) % 5;
+                GameSettings.GameMode = (GameSettings.GameMode + 1) % 6;
             }
         }
         // Right
@@ -74,7 +74,7 @@ public class OptionManager : MonoBehaviour
             }
             else if (option == 2)
             {
-                GameSettings.GameMode = (GameSettings.GameMode + 4) % 5;
+                GameSettings.GameMode = (GameSettings.GameMode + 5) % 6;
             }
         }
         // Left

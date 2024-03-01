@@ -34,6 +34,26 @@ public class ScoreManager : MonoBehaviour
             int timing = noteScript.noteTime;
             // Init
 
+            if (GameSettings.GameMode == 5)
+            {
+                if (noteScript.transform.position.y <= -3.11)
+                {
+                    GameManager.instance.judges[0]++;
+                    judgeEffect(0);
+                    
+                    GameManager.instance.NoteHit(i, 2);
+                    if (noteScript.isLongNt)
+                    {
+                        noteScript.isLongNtClicked = true;
+                    }
+                    else
+                    {
+                        Destroy(currentNote);
+                    }
+                }
+                continue;
+            }   // Auto Play
+            
             if (!noteScript.canBePressed)
             {
                 if (timing - GameSettings.JudgeTiming.Miss <= musicTime && musicTime <= timing + GameSettings.JudgeTiming.Good)
