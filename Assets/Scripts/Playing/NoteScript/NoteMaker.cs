@@ -8,6 +8,8 @@ public class NoteMaker : MonoBehaviour
 {
     public Sprite noteRed, noteGreen, noteBlue;
     public Sprite noteYellow, noteCyan, noteMagenta, noteWhite;
+    public Sprite longNoteRed, longNoteGreen, longNoteBlue;
+    public Sprite longNoteYellow, longNoteCyan, longNoteMagenta, longNoteWhite;
     public GameObject noteHolder;
     public float noteHeight;
 
@@ -29,6 +31,11 @@ public class NoteMaker : MonoBehaviour
         {
             noteRed, noteGreen, noteBlue,
             noteYellow, noteCyan, noteMagenta, noteWhite
+        };
+        Sprite[] longNotePrefab =
+        {
+            longNoteRed, longNoteGreen, longNoteBlue,
+            longNoteYellow, longNoteCyan, longNoteMagenta, longNoteWhite
         };
 
         int noteAmount = 0;
@@ -72,7 +79,6 @@ public class NoteMaker : MonoBehaviour
                 noteObject.transform.SetParent(noteHolder.transform, false);
 
                 Image img = noteObject.AddComponent<Image>();
-                img.sprite = notePrefab[color_to_show];
 
                 RectTransform rect = img.GetComponent<RectTransform>();
                 rect.sizeDelta = new Vector2(118f, noteHeight);
@@ -80,11 +86,15 @@ public class NoteMaker : MonoBehaviour
 
                 if (isLongNt == 0)
                 {
+                    img.sprite = notePrefab[color_to_show];
+                    
                     noteObject.transform.localPosition = new Vector3(lanePosition[noteLane],
                         (float)note[1] * GameSettings.HighSpeed / 10, -5000);
                 }
                 else
                 {
+                    img.sprite = longNotePrefab[color_to_show];
+                    
                     var midY = (float)(note[3] + note[1]) / 2;
                     noteObject.transform.localPosition = new Vector3(lanePosition[noteLane],
                         midY * GameSettings.HighSpeed / 10, -4000);

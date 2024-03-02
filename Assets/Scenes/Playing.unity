@@ -6261,8 +6261,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 2533359615
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0.5882353}
+    rgba: 1358954495
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0.3137255}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6831,6 +6831,13 @@ MonoBehaviour:
   noteCyan: {fileID: 21300000, guid: 4855d39e1e6174a4cbe1bc98b7a07563, type: 3}
   noteMagenta: {fileID: 21300000, guid: 09b9ba5c78f0bdc4d8fa6d0a5db88461, type: 3}
   noteWhite: {fileID: 21300000, guid: 5fca3cffc8976a141bd1d1ceae147c5e, type: 3}
+  longNoteRed: {fileID: 21300000, guid: 9cef17ff5c7feed4a9eaf176acaa0088, type: 3}
+  longNoteGreen: {fileID: 21300000, guid: 9683ca017d8a75647a1ccabdb869cf30, type: 3}
+  longNoteBlue: {fileID: 21300000, guid: 89f6721c5bf7c5f45b87dbaf83e26060, type: 3}
+  longNoteYellow: {fileID: 21300000, guid: 0da7252dc77f08844b284bbb79c545b8, type: 3}
+  longNoteCyan: {fileID: 21300000, guid: 845878f249945a74cb1a82d90098ebb3, type: 3}
+  longNoteMagenta: {fileID: 21300000, guid: 2e1549a2fe323194b84dda3f11fd5a2e, type: 3}
+  longNoteWhite: {fileID: 21300000, guid: 72acf5a802529da469c6e3fe4f8ae823, type: 3}
   noteHolder: {fileID: 902335644}
   noteHeight: 40
 --- !u!1 &902335644
@@ -7770,7 +7777,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -299.99994, y: 0}
+  m_AnchoredPosition: {x: -300, y: 0}
   m_SizeDelta: {x: -600, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1271700326
@@ -8066,8 +8073,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 2533359615
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0.5882353}
+    rgba: 1358954495
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0.3137255}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
