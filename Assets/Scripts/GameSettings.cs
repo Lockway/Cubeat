@@ -33,5 +33,7 @@ public static class GameSettings
     public static List<float> songPreview { get; set; }
     public static List<Sprite> imageArray { get; set; }
     public static List<AudioClip> songClips { get; set; }
+    public static List<int> songBests { get; set; }
+    public static List<string>songRanks { get; set; }
     // Song Database
 }

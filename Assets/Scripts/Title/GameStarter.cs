@@ -31,6 +31,8 @@ public class NewBehaviourScript : MonoBehaviour
             GameSettings.songPreview = new List<float>();
             GameSettings.imageArray = new List<Sprite>();
             GameSettings.songClips = new List<AudioClip>();
+            GameSettings.songBests = new List<int>();
+            GameSettings.songRanks = new List<string>();
 
             findSongs(); // Titles
 
@@ -65,6 +67,10 @@ public class NewBehaviourScript : MonoBehaviour
                 AudioClip song = Resources.Load<AudioClip>("Songs/" + title + "/" + title);
                 GameSettings.songClips.Add(song);
                 // songClips
+
+                GameSettings.songBests.Add(0);
+                GameSettings.songRanks.Add("F");
+                // songBests, songRanks
             }
 
             GameSettings.Init = true;
