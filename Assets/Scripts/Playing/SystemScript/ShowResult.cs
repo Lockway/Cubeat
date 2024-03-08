@@ -55,7 +55,7 @@ public class ResultInfo : MonoBehaviour
                     int diff = GameSettings.Difficulty;
                     int pos = GameSettings.CurrentSong * 3 + diff;
 
-                    if (val > GameSettings.songBests[pos])
+                    if (val > GameSettings.songBests[pos] && GameSettings.GameMode < 5)
                     {
                         GameSettings.songBests[pos] = val;
                         GameSettings.songRanks[pos] = ranks[i];
