@@ -68,8 +68,11 @@ public class NewBehaviourScript : MonoBehaviour
                 GameSettings.songClips.Add(song);
                 // songClips
 
-                GameSettings.songBests.Add(0);
-                GameSettings.songRanks.Add("F");
+                for(int i = 0; i < 3; i++)
+                {
+                    GameSettings.songBests.Add(0);
+                    GameSettings.songRanks.Add("F");
+                }
                 // songBests, songRanks
             }
 

@@ -7,7 +7,7 @@ using TMPro;
 public class ShowBest : MonoBehaviour
 {
     public int option;
-    private int scoreBest, pos;
+    private int scoreBest, pos, diff;
     private string scoreRank;
     private TextMeshProUGUI currentText;
 
@@ -20,7 +20,8 @@ public class ShowBest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        pos = GameSettings.CurrentSong;
+        diff = GameSettings.Difficulty;
+        pos = GameSettings.CurrentSong * 3 + diff;
 
         if (option == 0)
         {

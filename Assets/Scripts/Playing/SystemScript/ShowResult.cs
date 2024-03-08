@@ -51,7 +51,9 @@ public class ResultInfo : MonoBehaviour
                 if (1000000 - val <= values[i])
                 {
                     textComponent.text = ranks[i];
-                    int pos = GameSettings.CurrentSong;
+
+                    int diff = GameSettings.Difficulty;
+                    int pos = GameSettings.CurrentSong * 3 + diff;
 
                     if (val > GameSettings.songBests[pos])
                     {
